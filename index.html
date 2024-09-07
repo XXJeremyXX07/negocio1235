@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Canaletas y Servicios de Instalación</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Agregar el logo -->
+            <div class="logo-container">
+                <img src="16.jpg" alt="Logo de JFERPERU" class="company-logo">
+            </div>
+    
+            <h1 id="company-name">
+                JFERPERU
+                <span id="tagline">- Expertos en Ventas e Instalaciones</span>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="nav-link" data-key="inicio">Inicio</a></li>
+                    <li><a href="#catalogo" class="nav-link" data-key="catalogo">Catálogo</a></li>
+                    <li><a href="#servicios" class="nav-link" data-key="servicios">Servicios</a></li>
+                    <li><a href="#contacto" class="nav-link" data-key="contacto">Contacto</a></li>
+                </ul>
+                <div>
+                    <select id="language-selector">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="inicio">
+        <div class="container">
+            <h2 id="welcome-heading">Bienvenido a JFERPERÚ</h2>
+            <img src="canalones portada.JPG" alt="Imagen de Bienvenida" class="welcome-image">
+            <p id="welcome-text">Descubre la excelencia en canaletas y servicios de instalación con Nombre de la Empresa.
+            
+                Nuestra empresa no solo ofrece canaletas de la más alta calidad, sino que también nos enorgullecemos de brindar servicios de instalación profesional que superan las expectativas. Imagina un producto robusto y estéticamente perfecto, complementado por un servicio de instalación impecable que asegura durabilidad y rendimiento excepcionales.
+                
+                Desde la primera consulta hasta la instalación final, nuestro equipo de expertos está comprometido a proporcionar una experiencia sin igual. Cada canaleta es seleccionada y adaptada meticulosamente para satisfacer tus necesidades específicas, garantizando que tu propiedad no solo luzca increíble, sino que también funcione a la perfección.
+                
+                Elige Nombre de la Empresa y transforma tu espacio con soluciones de canaletas que combinan calidad, estilo y un servicio inigualable. Tu satisfacción es nuestra prioridad, y estamos aquí para hacer realidad la mejor versión de tu hogar o negocio.</p>
+        </div>
+    </section>
+    
+
+    <section id="catalogo">
+        <div class="container">
+            <h2 data-key="catalog-heading">Catálogo de Canaletas</h2>
+            <div class="productos">
+                <!-- Producto 1 -->
+                <div class="producto">
+                    <img src="1.jpg" alt="Canaleta Modelo 1" class="producto-imagen">
+                    <h3 data-key="product-name-1">Canaleta Modelo 1</h3>
+                    <p data-key="product-price-1">$100</p>
+                    <p data-key="product-description-1">Descripción breve del producto 1.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 1')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 2 -->
+                <div class="producto">
+                    <img src="2.jpg" alt="Canaleta Modelo 2">
+                    <h3 data-key="product-name-2">Canaleta Modelo 2</h3>
+                    <p data-key="product-price-2">$120</p>
+                    <p data-key="product-description-2">Descripción breve del producto 2.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 2')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 3 -->
+                <div class="producto">
+                    <img src="3.jpg" alt="Canaleta Modelo 3">
+                    <h3 data-key="product-name-3">Canaleta Modelo 3</h3>
+                    <p data-key="product-price-3">$90</p>
+                    <p data-key="product-description-3">Descripción breve del producto 3.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 3')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 4 -->
+                <div class="producto">
+                    <img src="4.jpg" alt="Canaleta Modelo 4">
+                    <h3 data-key="product-name-4">Canaleta Modelo 4</h3>
+                    <p data-key="product-price-4">$110</p>
+                    <p data-key="product-description-4">Descripción breve del producto 4.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 4')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 5 -->
+                <div class="producto">
+                    <img src="5.jpg" alt="Canaleta Modelo 5">
+                    <h3 data-key="product-name-5">Canaleta Modelo 5</h3>
+                    <p data-key="product-price-5">$130</p>
+                    <p data-key="product-description-5">Descripción breve del producto 5.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 5')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 6 -->
+                <div class="producto">
+                    <img src="6.jpg" alt="Canaleta Modelo 6">
+                    <h3 data-key="product-name-6">Canaleta Modelo 6</h3>
+                    <p data-key="product-price-6">$140</p>
+                    <p data-key="product-description-6">Descripción breve del producto 6.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 6')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 7 -->
+                <div class="producto">
+                    <img src="7.jpg" alt="Canaleta Modelo 7">
+                    <h3 data-key="product-name-7">Canaleta Modelo 7</h3>
+                    <p data-key="product-price-7">$150</p>
+                    <p data-key="product-description-7">Descripción breve del producto 7.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 7')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 8 -->
+                <div class="producto">
+                    <img src="8.jpg" alt="Canaleta Modelo 8">
+                    <h3 data-key="product-name-8">Canaleta Modelo 8</h3>
+                    <p data-key="product-price-8">$160</p>
+                    <p data-key="product-description-8">Descripción breve del producto 8.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 8')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 9 -->
+                <div class="producto">
+                    <img src="9.jpg" alt="Canaleta Modelo 9">
+                    <h3 data-key="product-name-9">Canaleta Modelo 9</h3>
+                    <p data-key="product-price-9">$170</p>
+                    <p data-key="product-description-9">Descripción breve del producto 9.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 9')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 10 -->
+                <div class="producto">
+                    <img src="10.jpg" alt="Canaleta Modelo 10">
+                    <h3 data-key="product-name-10">Canaleta Modelo 10</h3>
+                    <p data-key="product-price-10">$180</p>
+                    <p data-key="product-description-10">Descripción breve del producto 10.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 10')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 11 -->
+                <div class="producto">
+                    <img src="canaleta11.jpg" alt="Canaleta Modelo 11">
+                    <h3 data-key="product-name-11">Canaleta Modelo 11</h3>
+                    <p data-key="product-price-11">$190</p>
+                    <p data-key="product-description-11">Descripción breve del producto 11.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 11')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+                <!-- Producto 12 -->
+                <div class="producto">
+                    <img src="canaleta12.jpg" alt="Canaleta Modelo 12">
+                    <h3 data-key="product-name-12">Canaleta Modelo 12</h3>
+                    <p data-key="product-price-12">$200</p>
+                    <p data-key="product-description-12">Descripción breve del producto 12.</p>
+                    <button onclick="agregarAlCarrito('Canaleta Modelo 12')" data-key="add-to-cart">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <h2 data-key="services-heading">Servicios de Instalación</h2>
+            <img src="11.JPG" alt="Imagen de Bienvenida" class="welcome-image">
+            <p data-key="services-text">Ofrecemos instalación profesional de canaletas con la mejor calidad y garantía.</p>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2 data-key="contact-heading">Contacto</h2>
+            <form id="contact-form" action="contacto.php" method="post">
+                <label for="nombre" data-key="label-name">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email" data-key="label-email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensaje" data-key="label-message">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                
+                <button type="submit" data-key="submit">Enviar</button>
+ <!-- Botones para WhatsApp y Facebook -->
+    <div class="social-buttons">
+        <a href="https://wa.me/+51992754932" target="_blank" class="whatsapp-button">WhatsApp</a>
+        
+        <a href="https://www.facebook.com/fabiola.guzmanmendoza.16" target="_blank" class="facebook-button">Facebook</a>
+    </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p id="footer-text" data-key="footer-text">&copy; 2024 Nombre de la Empresa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
