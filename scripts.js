@@ -1,30 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Cargar idioma por defecto
-    setLanguage('es');
-
-    // Manejar cambio de idioma
-    document.getElementById('language-selector').addEventListener('change', (event) => {
-        setLanguage(event.target.value);
-    });
-
     // Inicializar carrito
     let carrito = [];
 
     // Función para agregar productos al carrito
-    window.agregarAlCarrito = function(producto) {
-        carrito.push(producto);
+    window.agregarAlCarrito = function(producto, precio) {
+        carrito.push({ nombre: producto, precio: parseFloat(precio) });
         actualizarCarrito();
     }
 
     // Función para actualizar el contenido del carrito en la página
     function actualizarCarrito() {
-        const listaCarrito = document.querySelector('#carrito ul');
+        const listaCarrito = document.querySelector('#carrito-items');
         listaCarrito.innerHTML = '';
-        carrito.forEach((producto, index) => {
-            const li = document.createElement('li');
-            li.textContent = producto;
-            listaCarrito.appendChild(li);
+        let total = 0;
+
+        carrito.forEach((item) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('carrito-item');
+            itemDiv.innerHTML = `<span>${item.nombre} - $${item.precio.toFixed(2)}</span><button onclick="eliminarDelCarrito('${item.nombre}')">Eliminar</button>`;
+            listaCarrito.appendChild(itemDiv);
+            total += item.precio;
         });
+
+        // Actualizar el total
+        document.getElementById('total-carrito').textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    // Función para eliminar un producto del carrito
+    window.eliminarDelCarrito = function(nombreProducto) {
+        carrito = carrito.filter(producto => producto.nombre !== nombreProducto);
+        actualizarCarrito();
     }
 
     // Función para vaciar el carrito
@@ -33,56 +38,60 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarCarrito();
     });
 
-    // Función de validación de formulario
-    document.getElementById('contact-form')?.addEventListener('submit', (event) => {
-        if (!validateForm()) {
-            event.preventDefault();
-        }
+    // Mostrar la proforma
+    document.getElementById('ver-proforma')?.addEventListener('click', () => {
+        const carritoSection = document.getElementById('carrito');
+        const proformaSection = document.getElementById('proforma');
+        
+        carritoSection.style.display = 'none';
+        proformaSection.style.display = 'block';
+
+        const proformaItems = document.getElementById('proforma-items');
+        proformaItems.innerHTML = '';
+
+        let total = 0;
+
+        carrito.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('proforma-item');
+            itemDiv.innerHTML = `<span>${item.nombre} - $${item.precio.toFixed(2)}</span>`;
+            proformaItems.appendChild(itemDiv);
+            total += item.precio;
+        });
+
+        // Actualizar el total a pagar
+        document.getElementById('total-proforma').textContent = `Total a Pagar: $${total.toFixed(2)}`;
     });
 
-    function validateForm() {
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('email').value;
-        const mensaje = document.getElementById('mensaje').value;
+    // Confirmar la compra y generar la proforma para WhatsApp
+    document.getElementById('confirmar-compra')?.addEventListener('click', () => {
+        let mensaje = 'Hola, estoy interesado en los siguientes productos:\n\n';
+        let total = 0;
+        
+        carrito.forEach(item => {
+            mensaje += `- ${item.nombre} - $${item.precio.toFixed(2)}\n`;
+            total += item.precio;
+        });
+        
+        mensaje += `\nTotal a pagar: $${total.toFixed(2)}`;
+        mensaje += '\n\nPor favor, envíenme una proforma de compra.';
 
-        if (!nombre || !email || !mensaje) {
-            alert('Todos los campos son obligatorios.');
-            return false;
-        }
+        // Encode the message to be used in the URL
+        const mensajeEncoded = encodeURIComponent(mensaje);
 
-        // Aquí podrías agregar validación adicional para el email
-        return true;
-    }
-});
-document.getElementById('whatsapp-button').addEventListener('click', function(event) {
-    event.preventDefault();
+        // WhatsApp phone number
+        const telefono = '+51992754932'; // Cambia esto al número de WhatsApp adecuado
 
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
+        // WhatsApp URL with the message
+        const url = `https://wa.me/${telefono}?text=${mensajeEncoded}`;
 
-    var whatsappNumber = '1234567890'; // Reemplaza con tu número de WhatsApp
-    var whatsappMessage = `Hola, soy ${name} (${email}). Quiero decir: ${message}`;
+        // Redirect to WhatsApp
+        window.open(url, '_blank');
+    });
 
-    var whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-    
-    window.open(whatsappLink, '_blank');
-});
-document.getElementById('whatsapp-button').addEventListener('click', function(event) {
-    event.preventDefault();
-
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var userMessage = document.getElementById('message').value;
-
-    // Mensaje automático predeterminado
-    var autoMessage = "Este es un mensaje automático. Gracias por contactarnos.";
-
-    // Combinamos el mensaje automático con el mensaje del usuario
-    var fullMessage = `${autoMessage}\n\nNombre: ${name}\nCorreo: ${email}\nMensaje: ${userMessage}`;
-
-    var whatsappNumber = '1234567890'; // Reemplaza con tu número de WhatsApp
-    var whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(fullMessage)}`;
-    
-    window.open(whatsappLink, '_blank');
+    // Volver al carrito desde la proforma
+    document.getElementById('volver-carrito')?.addEventListener('click', () => {
+        document.getElementById('carrito').style.display = 'block';
+        document.getElementById('proforma').style.display = 'none';
+    });
 });

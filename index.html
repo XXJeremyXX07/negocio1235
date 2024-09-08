@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    
     <header>
         <div class="container">
             <!-- Agregar el logo -->
@@ -34,7 +35,7 @@
             </nav>
         </div>
     </header>
-    
+
     <section id="inicio">
         <div class="container">
             <h2 id="welcome-heading">Bienvenido a JFERPERÚ</h2>
@@ -157,11 +158,110 @@
     <section id="servicios">
         <div class="container">
             <h2 data-key="services-heading">Servicios de Instalación</h2>
-            <img src="11.JPG" alt="Imagen de Bienvenida" class="welcome-image">
-            <p data-key="services-text">Ofrecemos instalación profesional de canaletas con la mejor calidad y garantía.</p>
+            <div class="service-content">
+                <img src="11.png" alt="Imagen de Bienvenida" class="service-image">
+                <div class="service-text">
+                    <p data-key="services-text">Ofrecemos instalación profesional de canaletas con la mejor calidad y garantía.</p>
+                </div>
+            </div>
         </div>
     </section>
-
+    <body>
+        <!-- Tu contenido anterior aquí -->
+    
+        <!-- Carrito -->
+        <section id="carrito">
+            <div class="container">
+                <h2>Tu Carrito</h2>
+                <div id="carrito-items">
+                    <!-- Aquí se mostrarán los productos agregados al carrito -->
+                </div>
+                <button id="ver-proforma">Ver Proforma</button>
+            </div>
+        </section>
+    
+        <!-- Proforma -->
+        <section id="proforma" style="display: none;">
+            <div class="container">
+                <h2>Proforma de Compra</h2>
+                <div id="proforma-items">
+                    <!-- Aquí se mostrará la proforma con los productos seleccionados -->
+                </div>
+                <button id="confirmar-compra">Confirmar Compra</button>
+                <button id="volver-carrito">Volver al Carrito</button>
+            </div>
+        </section>
+        
+        <script src="translations.js"></script>
+        <script src="script.js"></script>
+        <script>
+            // Aquí se incluye el código JavaScript para el carrito y la proforma
+    
+            // Array para almacenar productos en el carrito
+            let carrito = [];
+    
+            // Función para agregar productos al carrito
+            function agregarAlCarrito(nombreProducto) {
+                carrito.push(nombreProducto);
+                mostrarCarrito();
+            }
+    
+            // Función para mostrar los productos en el carrito
+            function mostrarCarrito() {
+                const carritoItems = document.getElementById('carrito-items');
+                carritoItems.innerHTML = ''; // Limpiar el contenido del carrito
+    
+                carrito.forEach(producto => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('carrito-item');
+                    itemDiv.innerHTML = `<span>${producto}</span><button onclick="eliminarDelCarrito('${producto}')">Eliminar</button>`;
+                    carritoItems.appendChild(itemDiv);
+                });
+            }
+    
+            // Función para eliminar un producto del carrito
+            function eliminarDelCarrito(nombreProducto) {
+                carrito = carrito.filter(producto => producto !== nombreProducto);
+                mostrarCarrito();
+            }
+    
+            // Función para mostrar la proforma
+            function mostrarProforma() {
+                const carritoSection = document.getElementById('carrito');
+                const proformaSection = document.getElementById('proforma');
+                
+                carritoSection.style.display = 'none';
+                proformaSection.style.display = 'block';
+    
+                const proformaItems = document.getElementById('proforma-items');
+                proformaItems.innerHTML = '';
+    
+                carrito.forEach(producto => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('proforma-item');
+                    itemDiv.innerHTML = `<span>${producto}</span>`;
+                    proformaItems.appendChild(itemDiv);
+                });
+            }
+    
+            // Función para confirmar la compra
+            function confirmarCompra() {
+                alert('¡Gracias por tu compra!');
+                carrito = [];
+                mostrarCarrito();
+                document.getElementById('carrito').style.display = 'block';
+                document.getElementById('proforma').style.display = 'none';
+            }
+    
+            // Inicializar eventos
+            document.getElementById('ver-proforma').addEventListener('click', mostrarProforma);
+            document.getElementById('confirmar-compra').addEventListener('click', confirmarCompra);
+            document.getElementById('volver-carrito').addEventListener('click', () => {
+                document.getElementById('carrito').style.display = 'block';
+                document.getElementById('proforma').style.display = 'none';
+            });
+        </script>
+    </body>
     <section id="contacto">
         <div class="container">
             <h2 data-key="contact-heading">Contacto</h2>
